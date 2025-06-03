@@ -8,7 +8,6 @@ import (
 	"github.com/rivo/tview"
 )
 
-// InputHandler returns a tview input capture handler for the main app.
 func InputHandler(ctx *AppContext) func(event *tcell.EventKey) *tcell.EventKey {
 	inputField := tview.NewInputField().
 		SetLabel("PID to kill: ").

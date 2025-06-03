@@ -8,7 +8,6 @@ import (
 	"github.com/shirou/gopsutil/v3/mem"
 )
 
-// StartCPUMemUpdateLoop periodically updates the CPU and memory usage view.
 func StartCPUMemUpdateLoop(ctx *AppContext) {
 	go func() {
 		for {

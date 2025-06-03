@@ -6,11 +6,11 @@ import (
 	"sort"
 	"strconv"
 	"strings"
+
 	gopsnet "github.com/shirou/gopsutil/v3/net"
 	"github.com/shirou/gopsutil/v3/process"
 )
 
-// ProcInfo represents a process entry for the table
 type ProcInfo struct {
 	PID    int32
 	PIDStr string
@@ -22,7 +22,6 @@ type ProcInfo struct {
 	Ports  string
 }
 
-// GetProcessList retrieves all processes and their listening ports.
 func GetProcessList() ([]*process.Process, map[int32][]string, error) {
 	processes, err := process.Processes()
 	if err != nil {
@@ -39,7 +38,6 @@ func GetProcessList() ([]*process.Process, map[int32][]string, error) {
 	return processes, portMap, nil
 }
 
-// BuildProcInfoList builds a slice of ProcInfo from a list of processes and port map.
 func BuildProcInfoList(processes []*process.Process, portMap map[int32][]string) []ProcInfo {
 	var procList []ProcInfo
 	for _, p := range processes {
@@ -73,7 +71,6 @@ func BuildProcInfoList(processes []*process.Process, portMap map[int32][]string)
 	return procList
 }
 
-// SortProcInfoList sorts the process list by CPU and memory usage.
 func SortProcInfoList(procList []ProcInfo) {
 	sort.Slice(procList, func(i, j int) bool {
 		if procList[i].CPU == procList[j].CPU {
@@ -83,7 +80,6 @@ func SortProcInfoList(procList []ProcInfo) {
 	})
 }
 
-// KillProcessByPID kills a process by its PID
 func KillProcessByPID(pid int32) error {
 	proc, err := process.NewProcess(pid)
 	if err != nil {
@@ -92,7 +88,6 @@ func KillProcessByPID(pid int32) error {
 	return proc.Kill()
 }
 
-// min returns the minimum of two ints.
 func min(a, b int) int {
 	if a < b {
 		return a
