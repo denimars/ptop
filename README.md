@@ -14,7 +14,7 @@
 ## Installation
 1. Clone this repository:
    ```sh
-   git clone <your-repo-url>
+   git clone git@github.com:denimars/ptop.git
    cd ptop
    ```
 2. Download dependencies and build the application:
